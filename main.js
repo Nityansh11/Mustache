@@ -1,5 +1,8 @@
-function preload() {
+noseX=0;
+noseY=0;
 
+function preload() {
+    clown_nose= loadImage('https://i.postimg.cc/1zMq0sw7/clipart-hat-mustache-13.png');
 }
 
 function setup() {
@@ -19,10 +22,7 @@ function modelLoaded() {
 
 function draw() {
 image(video, 0, 0, 300, 300);
-}
-
-function take_snapshot(){
-    Save('myFilterImage.png');
+image(clown_nose, noseX, noseY, 30, 30);
 }
 
 function gotPoses(results)
@@ -31,5 +31,11 @@ function gotPoses(results)
     {
         console.log("nose x= " + results[0].pose.nose.x);
         console.log("nose y= " + results[0].pose.nose.y);
+        noseX= results[0].pose.nose.x-15;
+        noseY= results[0].pose.nose.y;
     }
+}
+
+function take_snapshot(){
+    save('myFilterImage.png');
 }
